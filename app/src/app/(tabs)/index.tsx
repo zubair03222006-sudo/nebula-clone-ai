@@ -77,7 +77,7 @@ export default function HomeScreen() {
               <View style={styles.horoscopeHeader}>
                 <View>
                   <CosmicText type="label" color={CosmicColors.gold}>Daily Horoscope</CosmicText>
-                  <CosmicText type="h2" style={{ marginTop: 4 }}>Today's Energy</CosmicText>
+                  <CosmicText type="h2" style={{ marginTop: 4 }}>{"Today's Energy"}</CosmicText>
                 </View>
                 <View style={styles.sparkleIcon}>
                   <CosmicText style={{ fontSize: 24 }}>✨</CosmicText>
@@ -145,7 +145,7 @@ export default function HomeScreen() {
           <GlassCard style={styles.insightBlock}>
             <View style={styles.insightGlowPurple} />
             <CosmicText type="h3" style={{ fontStyle: 'italic', lineHeight: 26 }}>
-              "You're being asked to stop performing and start arriving."
+              {`"You're being asked to stop performing and start arriving."`}
             </CosmicText>
             <CosmicText type="small" color={CosmicColors.mutedForeground} style={{ marginTop: 12 }}>
               With the Moon in Pisces softening your defenses, vulnerability becomes your superpower. Let someone in today — even quietly.

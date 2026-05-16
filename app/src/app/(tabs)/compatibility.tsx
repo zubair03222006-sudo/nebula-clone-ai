@@ -121,10 +121,10 @@ export default function CompatibilityScreen() {
             <GlassCard strong style={styles.insightCard}>
               <CosmicText type="label" color={CosmicColors.gold}>Relationship Insight</CosmicText>
               <CosmicText type="h3" style={{ fontStyle: 'italic', lineHeight: 26, marginTop: 8 }}>
-                "Two suns can share a sky — if neither dims for the other."
+                {`"Two suns can share a sky — if neither dims for the other."`}
               </CosmicText>
               <CosmicText type="small" color={CosmicColors.mutedForeground} style={{ marginTop: 12 }}>
-                Your fire fuels theirs. The work isn't compromise — it's choreography. Find rituals that honor both your individual orbits.
+                {`Your fire fuels theirs. The work isn't compromise — it's choreography. Find rituals that honor both your individual orbits.`}
               </CosmicText>
             </GlassCard>
           </View>

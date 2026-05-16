@@ -1,65 +1,69 @@
 import React from 'react';
 import { Text, TextProps, StyleSheet } from 'react-native';
-import { CosmicColors } from '@/constants/cosmic-theme';
+import { CosmicColors, CosmicFonts } from '@/constants/cosmic-theme';
 
-interface CosmicTextProps extends TextProps {
-  type?: 'hero' | 'h1' | 'h2' | 'h3' | 'body' | 'small' | 'label' | 'micro';
+export interface CosmicTextProps extends TextProps {
+  type?: 'hero' | 'h1' | 'h2' | 'h3' | 'body' | 'small' | 'micro' | 'label';
   color?: string;
 }
 
-export function CosmicText({ type = 'body', color = CosmicColors.foreground, style, children, ...rest }: CosmicTextProps) {
+export function CosmicText({ style, type = 'body', color = CosmicColors.foreground, ...rest }: CosmicTextProps) {
   return (
-    <Text style={[styles[type], { color }, style]} {...rest}>
-      {children}
-    </Text>
+    <Text
+      style={[
+        styles.base,
+        styles[type],
+        { color },
+        style,
+      ]}
+      {...rest}
+    />
   );
 }
 
 const styles = StyleSheet.create({
+  base: {
+    fontFamily: CosmicFonts.sans,
+  },
   hero: {
-    fontSize: 40,
-    fontWeight: '800',
-    letterSpacing: -0.5,
-    lineHeight: 46,
+    fontFamily: CosmicFonts.display,
+    fontSize: 42,
+    lineHeight: 44,
+    letterSpacing: -1,
   },
   h1: {
+    fontFamily: CosmicFonts.display,
     fontSize: 32,
-    fontWeight: '700',
+    lineHeight: 36,
     letterSpacing: -0.5,
-    lineHeight: 38,
   },
   h2: {
+    fontFamily: CosmicFonts.display,
     fontSize: 24,
-    fontWeight: '700',
-    letterSpacing: -0.3,
-    lineHeight: 30,
+    lineHeight: 28,
   },
   h3: {
+    fontFamily: CosmicFonts.display,
     fontSize: 20,
-    fontWeight: '600',
-    letterSpacing: -0.2,
-    lineHeight: 26,
+    lineHeight: 24,
   },
   body: {
     fontSize: 16,
-    fontWeight: '400',
     lineHeight: 24,
   },
   small: {
     fontSize: 14,
-    fontWeight: '400',
     lineHeight: 20,
   },
-  label: {
-    fontSize: 12,
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    letterSpacing: 1.5,
-  },
   micro: {
+    fontSize: 12,
+    lineHeight: 16,
+  },
+  label: {
     fontSize: 10,
-    fontWeight: '600',
+    lineHeight: 12,
     textTransform: 'uppercase',
     letterSpacing: 2,
+    fontWeight: '600',
   },
 });

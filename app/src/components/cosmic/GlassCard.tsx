@@ -1,36 +1,44 @@
 import React from 'react';
-import { View, ViewProps, StyleSheet, ViewStyle } from 'react-native';
+import { View, ViewProps, StyleSheet } from 'react-native';
 import { CosmicColors, CosmicRadii } from '@/constants/cosmic-theme';
 
-interface GlassCardProps extends ViewProps {
+export interface GlassCardProps extends ViewProps {
   strong?: boolean;
-  rounded?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  rounded?: 'md' | 'lg' | 'xl' | 'full';
 }
 
-export function GlassCard({ strong = false, rounded = 'xl', style, children, ...rest }: GlassCardProps) {
-  const radius = CosmicRadii[rounded];
+export function GlassCard({ style, strong = false, rounded = 'xl', ...rest }: GlassCardProps) {
+  const radii = {
+    md: CosmicRadii.md,
+    lg: CosmicRadii.lg,
+    xl: CosmicRadii.xl,
+    full: CosmicRadii.full,
+  };
 
   return (
     <View
       style={[
         styles.base,
-        {
-          backgroundColor: strong ? CosmicColors.glassStrong : CosmicColors.glass,
-          borderColor: strong ? CosmicColors.borderStrong : CosmicColors.border,
-          borderRadius: radius,
-        },
+        strong ? styles.strong : styles.light,
+        { borderRadius: radii[rounded] },
         style,
       ]}
       {...rest}
-    >
-      {children}
-    </View>
+    />
   );
 }
 
 const styles = StyleSheet.create({
   base: {
-    borderWidth: 1,
     overflow: 'hidden',
+    borderWidth: 1,
+  },
+  light: {
+    backgroundColor: CosmicColors.glass,
+    borderColor: CosmicColors.border,
+  },
+  strong: {
+    backgroundColor: CosmicColors.glassStrong,
+    borderColor: CosmicColors.borderStrong,
   },
 });

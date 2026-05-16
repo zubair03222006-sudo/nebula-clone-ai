@@ -6,13 +6,11 @@
 import React from 'react';
 import {
   Image,
-  Pressable,
   ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
 
 import { CosmicText } from '@/components/cosmic/CosmicText';
 import { GlassCard } from '@/components/cosmic/GlassCard';
@@ -34,7 +32,6 @@ const BIG_THREE = [
 ];
 
 export default function HomeScreen() {
-  const router = useRouter();
   const today = new Date();
   const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
   const monthDay = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
@@ -75,28 +72,26 @@ export default function HomeScreen() {
             </View>
 
             {/* Featured Horoscope Card */}
-            <Pressable onPress={() => router.push('/chart' as any)}>
-              <GlassCard strong style={styles.horoscopeCard}>
-                <View style={styles.glowBlob} />
-                <View style={styles.horoscopeHeader}>
-                  <View>
-                    <CosmicText type="label" color={CosmicColors.gold}>Daily Horoscope</CosmicText>
-                    <CosmicText type="h2" style={{ marginTop: 4 }}>Today's Energy</CosmicText>
-                  </View>
-                  <View style={styles.sparkleIcon}>
-                    <CosmicText style={{ fontSize: 24 }}>✨</CosmicText>
-                  </View>
+            <GlassCard strong style={styles.horoscopeCard}>
+              <View style={styles.glowBlob} />
+              <View style={styles.horoscopeHeader}>
+                <View>
+                  <CosmicText type="label" color={CosmicColors.gold}>Daily Horoscope</CosmicText>
+                  <CosmicText type="h2" style={{ marginTop: 4 }}>Today's Energy</CosmicText>
                 </View>
-                <CosmicText type="body" color="rgba(245,240,255,0.85)" style={{ marginTop: 16 }}>
-                  Venus enters your sphere with quiet generosity. Trust the slow pull — small choices today ripple far. Wear something gold.
+                <View style={styles.sparkleIcon}>
+                  <CosmicText style={{ fontSize: 24 }}>✨</CosmicText>
+                </View>
+              </View>
+              <CosmicText type="body" color="rgba(245,240,255,0.85)" style={{ marginTop: 16 }}>
+                Venus enters your sphere with quiet generosity. Trust the slow pull — small choices today ripple far. Wear something gold.
+              </CosmicText>
+              <View style={styles.readMore}>
+                <CosmicText type="small" color={CosmicColors.violet}>
+                  Read full reading →
                 </CosmicText>
-                <View style={styles.readMore}>
-                  <CosmicText type="small" color={CosmicColors.violet}>
-                    Read full reading →
-                  </CosmicText>
-                </View>
-              </GlassCard>
-            </Pressable>
+              </View>
+            </GlassCard>
           </SafeAreaView>
         </View>
 
@@ -122,28 +117,26 @@ export default function HomeScreen() {
             <CosmicText type="h3">Your Cosmic Snapshot</CosmicText>
             <CosmicText type="small" color={CosmicColors.mutedForeground}>Big 3</CosmicText>
           </View>
-          <Pressable onPress={() => router.push('/profile' as any)}>
-            <GlassCard style={styles.snapshotCard}>
-              {BIG_THREE.map((p, i) => (
-                <View
-                  key={p.name}
-                  style={[styles.snapshotRow, i < 2 && styles.snapshotRowBorder]}
-                >
-                  <GlassCard strong style={styles.snapshotIcon}>
-                    <CosmicText style={{ fontSize: 20 }}>{p.emoji}</CosmicText>
-                  </GlassCard>
-                  <View style={styles.snapshotInfo}>
-                    <View style={styles.snapshotNameRow}>
-                      <CosmicText type="micro" color={CosmicColors.mutedForeground}>{p.name}</CosmicText>
-                      <CosmicText type="h3" style={{ marginLeft: 8 }}>{p.sign}</CosmicText>
-                    </View>
-                    <CosmicText type="small" color={CosmicColors.mutedForeground}>{p.desc}</CosmicText>
+          <GlassCard style={styles.snapshotCard}>
+            {BIG_THREE.map((p, i) => (
+              <View
+                key={p.name}
+                style={[styles.snapshotRow, i < 2 && styles.snapshotRowBorder]}
+              >
+                <GlassCard strong style={styles.snapshotIcon}>
+                  <CosmicText style={{ fontSize: 20 }}>{p.emoji}</CosmicText>
+                </GlassCard>
+                <View style={styles.snapshotInfo}>
+                  <View style={styles.snapshotNameRow}>
+                    <CosmicText type="micro" color={CosmicColors.mutedForeground}>{p.name}</CosmicText>
+                    <CosmicText type="h3" style={{ marginLeft: 8 }}>{p.sign}</CosmicText>
                   </View>
-                  <CosmicText color={CosmicColors.mutedForeground}>›</CosmicText>
+                  <CosmicText type="small" color={CosmicColors.mutedForeground}>{p.desc}</CosmicText>
                 </View>
-              ))}
-            </GlassCard>
-          </Pressable>
+                <CosmicText color={CosmicColors.mutedForeground}>›</CosmicText>
+              </View>
+            ))}
+          </GlassCard>
         </View>
 
         {/* ─── Daily Insight ─── */}
@@ -168,34 +161,23 @@ export default function HomeScreen() {
 
         {/* ─── AI Astrologer CTA ─── */}
         <View style={styles.section}>
-          <Pressable onPress={() => router.push('/chat' as any)}>
-            <View style={styles.ctaOuter}>
-              <GlassCard strong style={styles.ctaInner}>
-                <View style={styles.ctaContent}>
-                  <View style={styles.ctaIcon}>
-                    <CosmicText style={{ fontSize: 24 }}>💬</CosmicText>
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <CosmicText type="label" color={CosmicColors.gold}>Premium</CosmicText>
-                    <CosmicText type="h3" style={{ marginTop: 2 }}>Ask the AI Astrologer</CosmicText>
-                    <CosmicText type="small" color={CosmicColors.mutedForeground} style={{ marginTop: 2 }}>
-                      Unlimited cosmic guidance, anytime
-                    </CosmicText>
-                  </View>
-                  <CosmicText color={CosmicColors.foreground}>→</CosmicText>
+          <View style={styles.ctaOuter}>
+            <GlassCard strong style={styles.ctaInner}>
+              <View style={styles.ctaContent}>
+                <View style={styles.ctaIcon}>
+                  <CosmicText style={{ fontSize: 24 }}>💬</CosmicText>
                 </View>
-              </GlassCard>
-            </View>
-          </Pressable>
-        </View>
-
-        {/* Onboarding link */}
-        <View style={[styles.section, { alignItems: 'center', marginVertical: 24 }]}>
-          <Pressable onPress={() => router.push('/onboarding' as any)}>
-            <CosmicText type="small" color={CosmicColors.mutedForeground} style={{ textDecorationLine: 'underline' }}>
-              New here? Take the cosmic tour →
-            </CosmicText>
-          </Pressable>
+                <View style={{ flex: 1 }}>
+                  <CosmicText type="label" color={CosmicColors.gold}>Premium</CosmicText>
+                  <CosmicText type="h3" style={{ marginTop: 2 }}>Ask the AI Astrologer</CosmicText>
+                  <CosmicText type="small" color={CosmicColors.mutedForeground} style={{ marginTop: 2 }}>
+                    Unlimited cosmic guidance, anytime
+                  </CosmicText>
+                </View>
+                <CosmicText color={CosmicColors.foreground}>→</CosmicText>
+              </View>
+            </GlassCard>
+          </View>
         </View>
 
         <View style={{ height: 100 }} />

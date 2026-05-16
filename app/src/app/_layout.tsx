@@ -1,20 +1,15 @@
-import React from 'react';
+import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { CosmicColors } from '@/constants/cosmic-theme';
+import React from 'react';
+import { StatusBar } from 'react-native';
 
 export default function RootLayout() {
   return (
-    <>
-      <StatusBar style="light" />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: CosmicColors.background },
-        }}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="onboarding" options={{ presentation: 'modal' }} />
+    <ThemeProvider value={DarkTheme}>
+      <StatusBar barStyle="light-content" />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
-    </>
+    </ThemeProvider>
   );
 }
